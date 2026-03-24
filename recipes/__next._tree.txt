@@ -1,9 +1,0 @@
-1:"$Sreact.fragment"
-2:I[484,[],"ViewportBoundary"]
-4:I[484,[],"MetadataBoundary"]
-5:"$Sreact.suspense"
-7:I[6869,[],"IconMark"]
-:HL["/grandma-cookbook/_next/static/css/1c5f1528af37ff8c.css","style"]
-0:{"buildId":"5vA0m9Hu3JXonIvYyGIpv","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"recipes","paramType":null,"paramKey":"recipes","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"head":["$","$1","h",{"children":[null,["$","$L2",null,{"children":"$@3"}],["$","div",null,{"hidden":true,"children":["$","$L4",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":"$@6"}]}]}],null]}],"isHeadPartial":false,"staleTime":300}
-3:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-6:[["$","title","0",{"children":"Grandma's Cookbook"}],["$","meta","1",{"name":"description","content":"A digital flipbook of handwritten recipes, preserved with love."}],["$","link","2",{"rel":"icon","href":"/grandma-cookbook/favicon.ico"}],["$","$L7","3",{}]]
