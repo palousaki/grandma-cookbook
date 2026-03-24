@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-serif: 'Lora', Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f5f4f1;
+  color: #292524; /* stone-800 */
+}
+
+::selection {
+  background-color: #fcd34d; /* amber-300 */
+  color: #431407; /* amber-950 */
+}

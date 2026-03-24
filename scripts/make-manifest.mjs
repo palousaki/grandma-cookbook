@@ -11,7 +11,7 @@ const files = (await readdir(dir))
 
 const pages = files.map((f) => `/recipes/${f}`);
 await writeFile(
-  join(process.cwd(), "app", "recipes", "pages.json"),
+  join(process.cwd(), "src", "data", "pages.json"),
   JSON.stringify(pages, null, 2)
 );
-console.log(`Wrote ${pages.length} pages to app/recipes/pages.json`);
+console.log(`Wrote ${pages.length} pages to src/data/pages.json`);
