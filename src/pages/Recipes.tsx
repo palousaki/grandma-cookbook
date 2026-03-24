@@ -25,6 +25,8 @@ export default function Recipes() {
   const location = useLocation();
   const targetPage = (location.state as { startPage?: number } | null)?.startPage;
 
+  const LAST_PAGE_KEY = 'grandma-cookbook-last-page';
+
   const tocItems = useMemo(
     () => [...items].sort((a, b) => a.startPage - b.startPage),
     [items]
@@ -57,23 +59,31 @@ export default function Recipes() {
     });
 
     pf.loadFromHTML(containerRef.current.querySelectorAll<HTMLElement>('.page'));
-    pf.on('flip', (e) => setPage((e as any).data));
+    pf.on('flip', (e) => {
+      const p = (e as any).data;
+      setPage(p);
+      localStorage.setItem(LAST_PAGE_KEY, String(p));
+    });
     pageFlipRef.current = pf;
     window.scrollTo(0, 0);
 
-    if (targetPage != null) {
-      setTimeout(() => pf.flip(targetPage), 50);
+    const resumePage = targetPage ?? Number(localStorage.getItem(LAST_PAGE_KEY) ?? 0);
+    if (resumePage > 0) {
+      setTimeout(() => pf.flip(resumePage), 50);
     }
 
     return () => {
       pf.destroy();
       pageFlipRef.current = null;
+      localStorage.removeItem(LAST_PAGE_KEY);
     };
   }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setZoom(1);
+      if (e.key === 'ArrowLeft') pageFlipRef.current?.flipPrev();
+      if (e.key === 'ArrowRight') pageFlipRef.current?.flipNext();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);

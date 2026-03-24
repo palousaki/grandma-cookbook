@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, ListChecks } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
@@ -32,10 +32,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </span>
           </Link>
 
-          <div className="flex items-center gap-6 text-sm text-stone-600">
+          {/* <div className="flex items-center gap-6 text-sm text-stone-600">
             {navLink('/recipes', 'Recipes', BookOpen)}
-            {navLink('/recipes/toc-editor', 'TOC Editor', ListChecks)}
-          </div>
+          </div> */}
         </nav>
       </header>
 
@@ -47,6 +46,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <span className="text-xs text-stone-400">
             © {new Date().getFullYear()} — preserved with love
           </span>
+          <Link
+            to="/recipes/toc-editor"
+            className="text-xs text-stone-300 hover:text-stone-400 transition-colors mt-1"
+          >
+            toc editor
+          </Link>
         </div>
       </footer>
     </div>

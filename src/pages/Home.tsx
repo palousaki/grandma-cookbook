@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, ChefHat, ArrowRight, ListChecks, Heart } from 'lucide-react';
+import { BookOpen, ChefHat, ArrowRight } from 'lucide-react';
 import { useToc } from '../hooks/useToc';
 
 export default function Home() {
   const { items } = useToc();
-  const featured = items.slice(0, 6);
+
+  const featured = [
+    { title: 'Μπακλαβάς',            startPage: 9,  emoji: '🍯', image: 'https://images.unsplash.com/photo-1651507126852-7bc852a8bb99?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', position: 'center 80%' },
+    { title: 'Τσουρέκια',            startPage: 19, emoji: '🥐', image: 'https://images.unsplash.com/photo-1648978734176-4278722c7275?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', position: 'center' },
+    { title: 'Σιμιγδάλι',            startPage: 32, emoji: '🍮', image: 'https://images.unsplash.com/photo-1613222097523-87d3e3311c38?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', position: 'center' },
+    { title: 'Κολοκυθοκεφτέδες',     startPage: 33, emoji: '🥒', image: 'https://images.unsplash.com/photo-1741791415742-61aa540b4d86?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', position: 'center' },
+    { title: 'Κολοκυθόπιτα',         startPage: 36, emoji: '🥧', image: 'https://images.unsplash.com/photo-1623169495515-0d6073ec0723?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', position: 'center' },
+    { title: 'Χοιρινό στη γάστρα',   startPage: 40, emoji: '🍖', image: 'https://images.unsplash.com/photo-1560762229-3d3450edacd9?q=80&w=826&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', position: 'center' },
+  ];
   const base = import.meta.env.BASE_URL;
   const url = (p: string) => base + p.replace(/^\//, '');
 
@@ -14,7 +22,7 @@ export default function Home() {
       <section className="relative">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${url('/textures/wood.jpg')})` }}
+          style={{ backgroundImage: `url(https://images.unsplash.com/photo-1623169495561-ba9aa789406e?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-amber-950/60 via-amber-900/50 to-amber-950/70" />
         {/* Fade into page below */}
@@ -31,7 +39,7 @@ export default function Home() {
           <p className="mt-5 text-lg md:text-xl text-white/80 max-w-xl mx-auto leading-relaxed">
             Handwritten treasures, lovingly preserved—now in a beautiful flipbook.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
+          <div className="mt-10">
             <Link
               to="/recipes"
               className="inline-flex items-center gap-2 rounded-full bg-white text-amber-900 px-6 py-3 font-medium shadow-lg hover:bg-amber-50 transition-colors"
@@ -39,48 +47,7 @@ export default function Home() {
               <BookOpen className="w-4 h-4" />
               View Recipes
             </Link>
-            <Link
-              to="/recipes/toc-editor"
-              className="inline-flex items-center gap-2 rounded-full border border-white/50 px-6 py-3 font-medium hover:bg-white/10 transition-colors"
-            >
-              <ListChecks className="w-4 h-4" />
-              TOC Editor
-            </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Feature cards */}
-      <section className="mx-auto max-w-5xl px-6 pt-4 pb-12">
-        <div className="grid gap-5 md:grid-cols-3">
-          {[
-            {
-              icon: BookOpen,
-              title: 'Realistic page flip',
-              body: 'Turn pages like a real book, with crisp scans of the original notes.',
-            },
-            {
-              icon: ListChecks,
-              title: 'Table of contents',
-              body: 'Jump straight to favorites — changes save instantly, no rebuild needed.',
-            },
-            {
-              icon: Heart,
-              title: 'Kept in the family',
-              body: 'Fully static — host it anywhere, share it only with those who matter.',
-            },
-          ].map(({ icon: Icon, title, body }) => (
-            <div
-              key={title}
-              className="rounded-2xl bg-white border border-stone-200 border-t-2 border-t-amber-300 p-5 shadow-sm"
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <Icon className="w-4 h-4 text-amber-600 shrink-0" />
-                <div className="font-semibold text-stone-800">{title}</div>
-              </div>
-              <p className="text-sm text-stone-500 leading-relaxed">{body}</p>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -99,44 +66,42 @@ export default function Home() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.length === 0 && (
-            <div className="rounded-2xl border bg-white p-5 text-stone-500">
-              Add items in{' '}
-              <Link to="/recipes/toc-editor" className="text-amber-700 hover:underline">
-                TOC Editor
-              </Link>{' '}
-              to see them here.
-            </div>
-          )}
-          {featured.map((item, idx) => (
+          {featured.map((item) => (
             <Link
-              key={`${item.title}-${idx}`}
+              key={item.title}
               to="/recipes"
               state={{ startPage: item.startPage }}
               className="group rounded-2xl border border-stone-200 bg-white shadow-sm hover:shadow-md hover:border-amber-300 transition-all overflow-hidden"
             >
-              <div className="bg-gradient-to-r from-amber-50 to-amber-100/60 border-b border-amber-100 px-4 py-3 flex items-center justify-between">
-                <span className="text-xs font-medium text-amber-500 uppercase tracking-widest">
-                  Recipe
-                </span>
-                <span className="font-serif text-amber-800 text-sm italic">
-                  p.&thinsp;
-                  {item.endPage !== item.startPage
-                    ? `${item.startPage + 1}–${item.endPage + 1}`
-                    : item.startPage + 1}
-                </span>
+              <div className="aspect-[4/3] overflow-hidden bg-amber-50 flex items-center justify-center relative">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    style={{ objectPosition: item.position }}
+                  />
+                ) : (
+                  <span className="text-6xl group-hover:scale-110 transition-transform duration-300 select-none">
+                    {item.emoji}
+                  </span>
+                )}
               </div>
-              <div className="p-4">
-                <div className="font-medium text-stone-800 truncate">{item.title}</div>
-                <div className="mt-3 inline-flex items-center gap-1 text-amber-600 group-hover:text-amber-700 text-sm">
-                  Open cookbook <ArrowRight className="w-3.5 h-3.5" />
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <div className="font-medium text-stone-800">{item.title}</div>
+                  <div className="text-xs text-stone-400 font-serif italic mt-0.5">
+                    p.&thinsp;{item.startPage + 1}
+                  </div>
                 </div>
+                <ArrowRight className="w-4 h-4 text-amber-400 group-hover:text-amber-600 shrink-0 transition-colors" />
               </div>
             </Link>
           ))}
         </div>
 
-        {featured.length > 0 && (
+        {items.length > 0 && (
           <div className="mt-8 text-center">
             <Link
               to="/recipes"
